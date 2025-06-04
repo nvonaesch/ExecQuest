@@ -145,17 +145,31 @@ class JeuViewModel : ViewModel() {
 
     fun appliquerBonusSelonId(item: Item) {
         when (item.id) {
-            1004 -> {
-                item.bonus_str = 10
-                item.bonus_hp = 20
+            1055 -> { //Doran's blade
+                item.bonus_str = 6
             }
-            2003 -> {
-                item.bonus_int = 15
-                item.bonus_spd = 5
+
+            224403 -> { //Golden Spatula
+                item.bonus_hp = 2
+                item.bonus_spd = 2
+                item.bonus_def = 2
+                item.bonus_int = 2
+                item.bonus_str = 2
             }
-            3006 -> {
-                item.bonus_def = -9
+
+            3006 -> { //Berserker's Greaves
+                item.bonus_spd = 9
             }
+
+            1082 -> { //Dark Seal
+                item.bonus_int = 7
+            }
+
+            3047 -> { //Plated Steelcaps
+                item.bonus_spd = 4
+                item.bonus_def = 3
+            }
+
             else -> {
             }
         }

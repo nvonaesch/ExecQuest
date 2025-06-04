@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,6 +29,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -53,7 +57,10 @@ fun PopupItems(
                 .border(6.dp, Color(0xFF2F2F2F), RoundedCornerShape(24.dp))
                 .padding(16.dp)
         ) {
-            Column {
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -68,7 +75,9 @@ fun PopupItems(
                             bonusStr = item.bonus_str,
                             bonusInt = item.bonus_int,
                             bonusDef = item.bonus_def,
-                            bonusSpd = item.bonus_spd
+                            bonusSpd = item.bonus_spd,
+                            modifier = Modifier
+                                .fillMaxWidth()
                         )
                     }
                 }
@@ -86,13 +95,14 @@ fun ItemCard(
     bonusStr: Int,
     bonusInt: Int,
     bonusDef: Int,
-    bonusSpd: Int
+    bonusSpd: Int,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .background(Color(0xFFA8C84D), RoundedCornerShape(16.dp))
-            .padding(8.dp)
-            .border(2.dp, Color.DarkGray, RoundedCornerShape(16.dp)),
+            .border(2.dp, Color.DarkGray, RoundedCornerShape(16.dp))
+            .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(
@@ -114,11 +124,21 @@ fun ItemCard(
                 color = Color(0xFF2F2F2F)
             )
             Spacer(modifier = Modifier.height(4.dp))
-            StatRow("${formatSigned(bonusHp)} hp", if (bonusHp >= 0) CouleurMain else Color.Red)
-            StatRow("${formatSigned(bonusStr)} str", if (bonusStr >= 0) CouleurMain else Color.Red)
-            StatRow("${formatSigned(bonusInt)} int", if (bonusInt >= 0) CouleurMain else Color.Red)
-            StatRow("${formatSigned(bonusDef)} def", if (bonusDef >= 0) CouleurMain else Color.Red)
-            StatRow("${formatSigned(bonusSpd)} spd", if (bonusSpd >= 0) CouleurMain else Color.Red)
+            if (bonusHp != 0) {
+                StatRow("${formatSigned(bonusHp)} hp", if (bonusHp >= 0) CouleurMain else Color.Red)
+            }
+            if (bonusStr != 0) {
+                StatRow("${formatSigned(bonusStr)} str", if (bonusStr >= 0) CouleurMain else Color.Red)
+            }
+            if (bonusInt != 0) {
+                StatRow("${formatSigned(bonusInt)} int", if (bonusInt >= 0) CouleurMain else Color.Red)
+            }
+            if (bonusDef != 0) {
+                StatRow("${formatSigned(bonusDef)} def", if (bonusDef >= 0) CouleurMain else Color.Red)
+            }
+            if (bonusSpd != 0) {
+                StatRow("${formatSigned(bonusSpd)} spd", if (bonusSpd >= 0) CouleurMain else Color.Red)
+            }
         }
     }
 }

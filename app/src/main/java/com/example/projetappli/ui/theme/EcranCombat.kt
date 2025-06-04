@@ -56,7 +56,7 @@ fun EcranCombat(jeuViewModel: JeuViewModel = viewModel()) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LaunchedEffect(Unit) {
-            jeuViewModel.chargerItems(listOf(1004, 2003, 3006))
+            jeuViewModel.chargerItems(listOf(1055, 224403, 3006, 1082, 3047))
         }
 
         val items by jeuViewModel.items.collectAsState()
