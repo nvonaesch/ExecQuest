@@ -53,6 +53,6 @@ fun SpriteAnimationDynamique(command: String) {
     Image(
         painter = frames[frame],
         contentDescription = null,
-        modifier = Modifier.size(120.dp)
+        modifier = Modifier.size(100.dp)
     )
 }

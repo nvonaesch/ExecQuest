@@ -50,7 +50,11 @@ android {
 }
 
 dependencies {
-
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation("androidx.compose.material:material-icons-extended:1.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("org.json:json:20240303")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
