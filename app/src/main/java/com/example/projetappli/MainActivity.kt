@@ -1,4 +1,6 @@
     package com.example.projetappli
+    import android.content.Context
+    import android.media.MediaPlayer
     import android.os.Bundle
     import androidx.activity.ComponentActivity
     import androidx.activity.compose.setContent
@@ -23,6 +25,7 @@
     import androidx.compose.ui.Modifier
     import androidx.compose.ui.draw.clip
     import androidx.compose.ui.graphics.Color
+    import androidx.compose.ui.platform.LocalContext
     import androidx.compose.ui.tooling.preview.Preview
     import androidx.compose.ui.unit.dp
     import com.example.projetappli.ui.theme.CouleurMain
@@ -48,7 +51,9 @@
 
     @Composable
     fun MainScreen() {
+        val context = LocalContext.current
         var selectedIndex by remember { mutableStateOf(0) }
+        AmbianceSonore(context, R.raw.redstone128_the_final_battle)
 
         Box(
             modifier = Modifier
@@ -134,5 +139,22 @@
     fun GreetingPreview() {
         ProjetAppliTheme {
             Greeting("Android")
+        }
+    }
+
+    @Composable
+    fun AmbianceSonore(context: Context, rawResId: Int) {
+        var mediaPlayer by remember { mutableStateOf<MediaPlayer?>(null) }
+
+        DisposableEffect(Unit) {
+            val player = MediaPlayer.create(context, rawResId)
+            player.isLooping = true
+            player.start()
+            mediaPlayer = player
+
+            onDispose {
+                player.stop()
+                player.release()
+            }
         }
     }

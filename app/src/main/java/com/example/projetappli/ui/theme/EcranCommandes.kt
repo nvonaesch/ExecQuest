@@ -38,11 +38,10 @@ fun EcranCommandes(jeuViewModel: JeuViewModel = viewModel()) {
 
     val toutesLesCommandes = listOf(
         "./start" to "Démarre l'aventure.",
-        "./createCharacter" to "Crée ton personnage.",
-        "./stats" to "Affiche les statistiques du personnage.",
-        "./items" to "Affiche l’équipement du joueur.",
-        "./chapter1" to "Accède au chapitre 1.",
-        "./chapter2" to "Accède au chapitre 2 (après création du personnage)."
+        "./createCharacter -n [Nom]" to "Crée un personnage dénommé [Nom]",
+        "./switchCharacter -n [Nom]" to "Permet de changer le personnage sélectionné",
+        "./quest -n [N°Quete] -s [Etape]" to "Permet d'acceder à l'étape [Etape] de la quete [N°Quete]",
+        "./currentQuest" to "Permet de connaitre la quête en cours"
     )
 
     Column(

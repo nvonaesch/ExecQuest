@@ -39,15 +39,17 @@ val orbitFontFamily = FontFamily(Font(R.font.orbit_regular))
 fun EcranCombat(jeuViewModel: JeuViewModel = viewModel()) {
     var showStats by remember { mutableStateOf(false) }
     var showItems by remember { mutableStateOf(false) }
+    var showCharacters by remember { mutableStateOf(false) }
+
     val personnageDede = Personnage("DEDE", 50, 12, 2, 8, 12)
 
 
     var input by remember { mutableStateOf("") }
     val messages by jeuViewModel.messages.collectAsState()
 
-    var spriteGauche by remember { mutableStateOf<String?>(null) }
-    var spriteCentre by remember { mutableStateOf<String?>(null) }
-    var spriteDroite by remember { mutableStateOf<String?>(null) }
+    val spriteDroite by jeuViewModel.spriteDroite.collectAsState()
+    val spriteCentre by jeuViewModel.spriteMilieu.collectAsState()
+    val spriteGauche by jeuViewModel.spriteGauche.collectAsState()
 
     Column(
         modifier = Modifier
@@ -80,7 +82,9 @@ fun EcranCombat(jeuViewModel: JeuViewModel = viewModel()) {
                 BoutonVert("RUNES") {}
             }
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                BoutonVert("CHARACTERS") {}
+                BoutonVert("CHARACTERS") {
+                    showCharacters = true
+                }
                 BoutonVert("ITEMS") {
                     showItems = true
 
@@ -108,10 +112,18 @@ fun EcranCombat(jeuViewModel: JeuViewModel = viewModel()) {
             showStats = false
         }
     }
+
     if (showItems) {
         val items = jeuViewModel.items.collectAsState().value
         PopupItems(items = items) {
             showItems = false
+        }
+    }
+
+    if (showCharacters) {
+        val personnages = jeuViewModel.personnages.collectAsState().value
+        PopupCharacters(personnages = personnages) {
+            showCharacters = false
         }
     }
 

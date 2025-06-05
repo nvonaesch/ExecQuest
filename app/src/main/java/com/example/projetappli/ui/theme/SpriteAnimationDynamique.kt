@@ -33,8 +33,17 @@ fun SpriteAnimationDynamique(command: String) {
             painterResource(id = R.drawable.fireball_13),
             painterResource(id = R.drawable.fireball_14)
         )
+        "apparicio" -> listOf(
+            painterResource(id = R.drawable.apparicio)
+        )
         "idle" -> listOf(
-            painterResource(id = R.drawable.transparent)
+            painterResource(id =  R.drawable.idle)
+        )
+        "florine" -> listOf(
+            painterResource(id = R.drawable.florine)
+        )
+        "coupry" -> listOf(
+            painterResource(id = R.drawable.coupry)
         )
         else -> listOf(
             painterResource(id = R.drawable.transparent)
