@@ -134,13 +134,6 @@
         )
     }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        ProjetAppliTheme {
-            Greeting("Android")
-        }
-    }
 
     @Composable
     fun AmbianceSonore(context: Context, rawResId: Int) {
